@@ -12,9 +12,15 @@ namespace RPG.control
 {
     public class playercontroller : MonoBehaviour
     {
+        Health health;
 
+        private void Start()
+        {
+            health = GetComponent<Health>();
+        }
         void Update()
         {
+            if (health.IsDead()) return;
             if (InterecatWhitCombat()) return;
             if (InterecatWithMouvement()) return;
         }
@@ -25,11 +31,17 @@ namespace RPG.control
             foreach (RaycastHit hit in Hits)
             {
                 CombatTarget target = hit.transform.GetComponent<CombatTarget>();
-                    if (target == null) continue; 
+                if (target == null) continue;
+
+                GameObject targetGameObject = target.gameObject;
+                    if (!GetComponent<Fighter>().CanAttack(target.gameObject))
+                {
+                    continue;
+                } 
 
                     if (Input.GetMouseButtonDown(0)) {
 
-                    GetComponent<Fighter>().Attack(target);
+                    GetComponent<Fighter>().Attack(target.gameObject);
                      }
                 return true;
 
