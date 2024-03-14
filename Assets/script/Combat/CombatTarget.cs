@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace RPG.Combat
 {
+    //script pour tag les ennemies 
     public class CombatTarget : MonoBehaviour
     {
 
