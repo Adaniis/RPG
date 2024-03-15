@@ -33,7 +33,7 @@ namespace RPG.Combat
             if(target.IsDead()) return;   
             if (!IsInRange())
             {
-                GetComponent<mover>().MoveTo(target.transform.position);
+                GetComponent<mover>().MoveTo(target.transform.position,1f);
 
             }
             else

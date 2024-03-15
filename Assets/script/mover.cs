@@ -14,6 +14,7 @@ namespace RPG.Movement
     {
         //creer un chance dans l'inspector nommer target
         [SerializeField] Transform target;
+        float maxSpeed = 6f;
         // creer un variable navMeshAgent se typent sur le compossent NavMeshAgent
         NavMeshAgent navMeshAgent;
         Health health;
@@ -28,11 +29,11 @@ namespace RPG.Movement
         // on vas chercher le script Scheduler plus precissement le methode StartAction et on lui passe la valeur this
         //pour anuller les autres animation et ensuite on demande la methode MoveTo et on lui passe ariable desination 
 
-        public void StartMoveAction(Vector3 desination)
+        public void StartMoveAction(Vector3 desination, float speedFraction)
         {
             GetComponent<Scheduler>().StartAction(this);
             
-            MoveTo(desination);
+            MoveTo(desination,speedFraction);
         }
         void Update()
         {
@@ -49,9 +50,10 @@ namespace RPG.Movement
 
         //fonction public MoveTo avec une variable en vector 3 qui a faire que la variable destionation prend les coordonée 
         // du navMeshAgent et qui vas indiquée au NavMesh de bien se déplacée
-        public void MoveTo(Vector3 destination)
+        public void MoveTo(Vector3 destination,float speedFraction)
         {
             navMeshAgent.destination = destination;
+            navMeshAgent.speed = maxSpeed * speedFraction;
             navMeshAgent.isStopped = false;
         }
 

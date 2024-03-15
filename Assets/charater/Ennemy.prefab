@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ennemy
       objectReference: {fileID: 0}
+    - target: {fileID: 6207820399396937559, guid: d0757be679e34da409d514ab872350ef, type: 3}
+      propertyPath: m_Speed
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     m_RemovedGameObjects:
@@ -75,6 +79,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5679662303519560112, guid: d0757be679e34da409d514ab872350ef, type: 3}
       insertIndex: -1
       addedObject: {fileID: -4721097373635741771}
+    - targetCorrespondingSourceObject: {fileID: 5679662303519560112, guid: d0757be679e34da409d514ab872350ef, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5534901057979385498}
   m_SourcePrefab: {fileID: 100100000, guid: d0757be679e34da409d514ab872350ef, type: 3}
 --- !u!4 &2337918148979865293 stripped
 Transform:
@@ -121,6 +128,23 @@ CapsuleCollider:
   m_Height: 2.4091926
   m_Direction: 1
   m_Center: {x: -6.070532e-10, y: 0.7045958, z: -3.6753928e-10}
+--- !u!114 &5534901057979385498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7177906801734466336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b6cffc8b4804f47b8fac1fc5dbb9d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chaseDistance: 5
+  supiscionTime: 5
+  patrolpath: {fileID: 0}
+  waypointTolerance: 1
+  PatrolSpeedFraction: 0.2
 --- !u!1001 &3403677396710887897
 PrefabInstance:
   m_ObjectHideFlags: 0

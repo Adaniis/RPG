@@ -4,7 +4,9 @@ using RPG.Movement;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace RPG.control
 {
@@ -13,12 +15,16 @@ namespace RPG.control
         [SerializeField] float supiscionTime = 5f;
         [SerializeField] Patrolling patrolpath;
         [SerializeField] float waypointTolerance = 1f;
+        [SerializeField] float PatrolSpeedFraction = 0.2f;
+
         Fighter fighter;
         GameObject player; 
         Health health;
         Vector3 guardPosition; 
         float timeSinceLastSawThePlayer = Mathf.Infinity;
         int currentWaypointIndex = 0;
+        float waitingTime = 0f;
+        float timeSinceArriveWaypoint = 3f;
 
         //creation des variable fighter player et health baser rescpectivement sur les script fighter sur le tag player et sur le script health
         void Start ()
@@ -53,19 +59,29 @@ namespace RPG.control
 
         private void GuardBehaviour()
         {
+            
             Vector3 nextPosition = guardPosition;
 
             if(patrolpath != null)
             {
+                
                 if (AtWaypoint())
                 {
-                    CycleWaypoint();
+                    
+                    waitingTime += Time.deltaTime;
+                    
+                    if (waitingTime > timeSinceArriveWaypoint )
+                    {
+                        CycleWaypoint();
+                        waitingTime = 0f;
+                    }
+                    
                     
                 }
                 nextPosition = GetCurrentWaypoint();
 
             }
-            GetComponent<mover>().StartMoveAction(nextPosition);
+            GetComponent<mover>().StartMoveAction(nextPosition, PatrolSpeedFraction);
         }
 
         private Vector3 GetCurrentWaypoint()
@@ -91,6 +107,7 @@ namespace RPG.control
 
         private void AttackBehaviours()
         {
+            
             GetComponent<Fighter>().Attack(player);
         }
 
