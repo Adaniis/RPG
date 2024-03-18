@@ -9,18 +9,19 @@ using UnityEngine.Playables;
 public class NewBehaviourScript : MonoBehaviour
 {
 
-    
+   
 
     private void Start()
     {
-         
+        
         GetComponent<PlayableDirector>().played += disableControle;
         GetComponent<PlayableDirector> ().stopped += returnControle;
 
-            }
+           
+    }
     void disableControle(PlayableDirector pd)
     {
-     GameObject player =    GameObject.FindWithTag("Player");
+        GameObject player = GameObject.FindWithTag("Player");
 
         player.GetComponent<Scheduler>().CancelCurrentlAction();    
         player.GetComponent<playercontroller>().enabled = false;
@@ -30,6 +31,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     void returnControle(PlayableDirector pd)
     {
+        GameObject player = GameObject.FindWithTag("Player");
         player.GetComponent<playercontroller>().enabled = true;
         print("return");
     }
