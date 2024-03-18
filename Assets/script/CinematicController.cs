@@ -30,7 +30,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     void returnControle(PlayableDirector pd)
     {
-        
+        player.GetComponent<playercontroller>().enabled = true;
         print("return");
     }
 }
