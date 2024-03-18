@@ -107,6 +107,7 @@ namespace RPG.Combat
             //fonction d'annulation d'attaque 
             StopAttack();
             target = null;
+            GetComponent<mover>().cancel();
         }
 
         private void StopAttack()
